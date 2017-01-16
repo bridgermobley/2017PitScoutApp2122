@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_questions"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    tools:context="teamtators.com.a2122pitscout2017.Questions">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:background="@color/colorPrimaryDark"
+        />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtScoutName"
+        android:hint="Scout Name"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <Spinner
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinnerChoseTeam"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="200dp"
+        />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtWeight"
+        android:hint="Robot Weight"
+        android:layout_alignTop="@+id/txtScoutName"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentLeft="true"/>
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtLength"
+        android:hint="Robot Length"
+        android:layout_alignTop="@+id/txtWeight"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentLeft="true"/>
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtWidth"
+        android:hint="Robot Width"
+        android:layout_alignTop="@+id/txtLength"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentLeft="true"/>
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtHeight"
+        android:hint="Robot Height"
+        android:layout_alignTop="@+id/txtWidth"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDriveTrain"
+        android:text="Drive Train:"
+        android:layout_alignTop="@+id/txtHeight"
+        android:layout_marginTop="70dp"
+        android:layout_alignParentLeft="true"/>
+
+
+
+        />
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="300dp"
+            android:text="Tank (wheels or tread)"
+            android:id="@+id/radioTank"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Swerve"
+            android:id="@+id/radioSwerve"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Jump"
+            android:id="@+id/radioJump"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Omni"
+            android:id="@+id/radioOmni"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mecanum"
+            android:id="@+id/radioMecanum"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Other (Specify in comments)"
+            android:id="@+id/radioOther"
+            />
+
+    </RadioGroup>
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Can They Delay Their Auto?"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="500dp"
+        android:id="@+id/checkDelay"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="High Shooter"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="520dp"
+        android:id="@+id/checkHigh"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Low Shooter"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="540dp"
+        android:id="@+id/checkLow"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Place Gears"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="560dp"
+        android:id="@+id/checkGear"
+        />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Auto?"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="580dp"
+        android:id="@+id/checkAuto"
+        />
+
+    
+
+</RelativeLayout>
+
