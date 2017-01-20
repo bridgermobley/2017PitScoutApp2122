@@ -81,9 +81,6 @@
         android:layout_alignParentLeft="true"/>
 
 
-
-        />
-
     <RadioGroup
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
@@ -178,7 +175,58 @@
         android:id="@+id/checkAuto"
         />
 
-    
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editCapacity"
+        android:layout_alignParentLeft="true"
+        android:text="Ball Capacity"
+        android:layout_marginTop="600dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editStartingLocation"
+        android:layout_alignParentLeft="true"
+        android:text="Starting Location"
+        android:layout_marginTop="620dp"
+        />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editHumanPlayerPreference"
+        android:layout_alignParentLeft="true"
+        android:text="Human Player Preference"
+        android:layout_marginTop="640dp"
+        />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtWheels"
+        android:hint="Number of wheels"
+        android:layout_marginTop="260dp"
+        android:layout_marginLeft="260dp"
+        />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtAutoMode"
+        android:hint="# of auto modes"
+        android:layout_marginTop="565dp"
+        android:layout_marginLeft="260dp"
+        />
+
+
+
+
+
+
+
 
 </RelativeLayout>
 
