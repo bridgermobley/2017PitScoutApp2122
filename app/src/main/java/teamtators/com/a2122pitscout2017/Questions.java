@@ -1,10 +1,7 @@
 package teamtators.com.a2122pitscout2017;
 
-import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
 
 
 public class Questions extends AppCompatActivity {
@@ -25,5 +22,3 @@ public class Questions extends AppCompatActivity {
 
 
 
-
-}
