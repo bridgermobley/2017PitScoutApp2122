@@ -16,7 +16,7 @@
         android:text="Next"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
-        android:background="@color/colorPrimaryDark"
+        android:id="@+id/buttonNext"
         />
 
     <AutoCompleteTextView
@@ -130,14 +130,7 @@
 
     </RadioGroup>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Can They Delay Their Auto?"
-        android:layout_alignParentLeft="true"
-        android:layout_marginTop="500dp"
-        android:id="@+id/checkDelay"
-        />
+
 
     <CheckBox
         android:layout_width="wrap_content"
@@ -215,13 +208,29 @@
     <AutoCompleteTextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/txtWheelType"
+        android:hint="Type of wheels"
+        android:layout_marginTop="300dp"
+        android:layout_marginLeft="260dp"
+        />
+
+    <AutoCompleteTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:id="@+id/txtAutoMode"
         android:hint="# of auto modes"
         android:layout_marginTop="565dp"
         android:layout_marginLeft="260dp"
         />
 
-
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Willing to Cheesecake"
+        android:layout_alignParentLeft="true"
+        android:layout_marginTop="720dp"
+        android:id="@+id/checkCheesecake"
+        />
 
 
 
