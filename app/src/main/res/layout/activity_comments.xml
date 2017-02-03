@@ -88,8 +88,6 @@
         android:layout_marginTop="270dp"
         android:layout_alignParentLeft="true"/>
 
-
-
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -134,6 +132,73 @@
         android:layout_alignParentRight="true"
         android:id="@+id/buttonFinish"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDriver"
+        android:hint="Driver:"
+        android:layout_marginTop="430dp"
+        android:layout_alignParentLeft="true"/>
+
+    <AutoCompleteTextView
+        android:layout_width="330dp"
+        android:layout_marginTop="450dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDriverThisYear"
+        android:hint="Amount of time driver has had this year"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDriverCurrent"
+        android:hint="Amount of years driving:"
+        android:layout_marginTop="500dp"
+        android:layout_alignParentLeft="true"/>
+
+    <RadioGroup
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="520dp"
+            android:id="@+id/radio1Year"
+            android:hint="1 Year"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio2Year"
+            android:hint="2 Years"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio3Year"
+            android:hint="3 Years"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio2Year"
+            android:hint="5 Years"
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/radio5Year"
+            android:hint="5 Years"
+            />
+
+    </RadioGroup>
 
 </RelativeLayout>
 

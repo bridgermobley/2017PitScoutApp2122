@@ -17,6 +17,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         android:id="@+id/buttonNext"
+        android:onClick="nextButton"
         />
 
     <AutoCompleteTextView
@@ -130,8 +131,6 @@
 
     </RadioGroup>
 
-
-
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -167,7 +166,6 @@
         android:layout_marginTop="580dp"
         android:id="@+id/checkAuto"
         />
-
 
     <EditText
         android:layout_width="wrap_content"
@@ -231,11 +229,6 @@
         android:layout_marginTop="720dp"
         android:id="@+id/checkCheesecake"
         />
-
-
-
-
-
 
 </RelativeLayout>
 
