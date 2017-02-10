@@ -21,9 +21,9 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/txtDiscribeAuto"
+        android:id="@+id/txtDescribeAuto"
         android:hint="Auto"
-        android:layout_marginTop="50dp"
+        android:layout_below="@+id/txtComments"
         android:layout_alignParentLeft="true"/>
 
     <CheckBox
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:text="Can they cross the line?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="70dp"
+        android:layout_below="@+id/txtDescribeAuto"
         android:id="@+id/checkCross"
         />
 
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:text="Can They Delay Their Auto?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="100dp"
+        android:layout_below="@+id/checkCross"
         android:id="@+id/checkDelay"
         />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:text="Place Gear?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="130dp"
+        android:layout_below="@+id/checkDelay"
         android:id="@+id/checkGear"
         />
 
@@ -58,7 +58,7 @@
         android:layout_height="wrap_content"
         android:text="Shoot Fuel?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="160dp"
+        android:layout_below="@+id/checkGear"
         android:id="@+id/checkShoot"
         />
 
@@ -67,7 +67,7 @@
         android:layout_height="wrap_content"
         android:text="Activate hopper?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="190dp"
+        android:layout_below="@id/checkShoot"
         android:id="@+id/checkHopper"
         />
 
@@ -76,7 +76,7 @@
         android:layout_height="wrap_content"
         android:text="Pick up balls?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="220dp"
+        android:layout_below="@id/checkHopper"
         android:id="@+id/checkPick"
         />
 
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtDiscAuto"
         android:hint="Starting Position"
-        android:layout_marginTop="270dp"
+        android:layout_below="@+id/checkPick"
         android:layout_alignParentLeft="true"/>
 
         <CheckBox
@@ -93,8 +93,8 @@
             android:layout_height="wrap_content"
             android:text="In Key?"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="300dp"
-            android:id="@+id/radioStartInkey"
+            android:layout_below="@+id/txtDiscAuto"
+            android:id="@+id/radioStartInKey"
             />
 
         <CheckBox
@@ -102,8 +102,8 @@
             android:layout_height="wrap_content"
             android:text="Next to loading station?"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="330dp"
-            android:id="@+id/radioStartloadingstation"
+            android:layout_below="@+id/radioStartInKey"
+            android:id="@+id/radioStartLoadingStation"
             />
 
         <CheckBox
@@ -111,7 +111,7 @@
             android:layout_height="wrap_content"
             android:text="Next to key?"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="360dp"
+            android:layout_below="@+id/radioStartLoadingStation"
             android:id="@+id/radioStartNextKey"
             />
 
@@ -120,7 +120,7 @@
             android:layout_height="wrap_content"
             android:text="Middle?"
             android:layout_alignParentLeft="true"
-            android:layout_marginTop="390dp"
+            android:layout_below="@+id/radioStartNextKey"
             android:id="@+id/radioStartMiddle"
             />
 
@@ -138,16 +138,7 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtDriver"
         android:hint="Driver:"
-        android:layout_marginTop="430dp"
-        android:layout_alignParentLeft="true"/>
-
-    <AutoCompleteTextView
-        android:layout_width="330dp"
-        android:layout_marginTop="450dp"
-        android:layout_height="wrap_content"
-        android:id="@+id/txtDriverThisYear"
-        android:hint="Amount of time driver has had this year"
-        android:layout_alignParentTop="true"
+        android:layout_below="@+id/radioStartMiddle"
         android:layout_alignParentLeft="true"/>
 
     <TextView
@@ -155,17 +146,17 @@
         android:layout_height="wrap_content"
         android:id="@+id/txtDriverCurrent"
         android:hint="Amount of years driving:"
-        android:layout_marginTop="500dp"
+        android:layout_below="@+id/txtDriverThisYear"
         android:layout_alignParentLeft="true"/>
 
     <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/txtDriverCurrent">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="520dp"
             android:id="@+id/radio1Year"
             android:hint="1 Year"
             />
@@ -187,8 +178,8 @@
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/radio2Year"
-            android:hint="5 Years"
+            android:id="@+id/radio4Year"
+            android:hint="4 Years"
             />
 
         <RadioButton
@@ -199,6 +190,15 @@
             />
 
     </RadioGroup>
+
+    <AutoCompleteTextView
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtDriverThisYear"
+        android:hint="Amount of time driver has had this year"
+        android:layout_below="@+id/txtDriver"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>
 
