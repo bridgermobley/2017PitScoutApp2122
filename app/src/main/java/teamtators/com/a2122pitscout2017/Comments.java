@@ -1,14 +1,20 @@
 package teamtators.com.a2122pitscout2017;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.Toast;
+
+import java.io.File;
+import java.io.FileWriter;
 
 public class Comments extends AppCompatActivity {
 
@@ -16,11 +22,14 @@ public class Comments extends AppCompatActivity {
     RadioButton rad1Year, rad2Year, rad3Year, rad4Year, rad5Year;
     EditText txtComments;
     Button buttonNext;
+    SharedPreferences preferences;
+    Context context;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
+        context=this;
         cbxCrossLine=(CheckBox)findViewById(R.id.checkCross);
         cbxDelayAuto=(CheckBox)findViewById(R.id.checkDelay);
         cbxPlaceGear=(CheckBox)findViewById(R.id.checkGear);
@@ -37,6 +46,7 @@ public class Comments extends AppCompatActivity {
         rad4Year=(RadioButton)findViewById(R.id.radio4Year);
         rad5Year=(RadioButton)findViewById(R.id.radio5Year);
         txtComments=(EditText)findViewById(R.id.txtComments);
+        preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         buttonNext.setOnClickListener(
                 new Button.OnClickListener(){
                     public void onClick(View v)  {
@@ -47,7 +57,7 @@ public class Comments extends AppCompatActivity {
         );
     }
     private void saveData(){
-        SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
+
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("comments", txtComments.getText().toString());
         editor.putBoolean("crossLine", cbxCrossLine.isChecked());
@@ -83,4 +93,55 @@ public class Comments extends AppCompatActivity {
             return 0;
         }
     }
+    private void writeFile(){
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putString("filename", "StandScout_Team_" + preferences.getString("Team", "TEAM#"));
+        editor.commit();
+
+
+        File file = new File(Environment.getExternalStorageDirectory() + "/" + preferences.getString("filename", "BROKEN"));
+        try{
+            FileWriter writer;
+                writer = new FileWriter(file, true);
+            writer.append(preferences.getString("ScoutName", ""));
+            writer.append(preferences.getString("Team", ""));
+            writer.append(preferences.getInt("Weight", 0)+"");
+            writer.append(preferences.getInt("Height", 0)+"");
+            writer.append(preferences.getInt("Width", 0)+"");
+            writer.append(preferences.getInt("Length", 0)+"");
+            writer.append(preferences.getInt("NumWheels", 0)+"");
+            writer.append(preferences.getString("TypeWheels", ""));
+            writer.append(preferences.getInt("BallCap", 1)+"");
+            writer.append(preferences.getString("StartLoc", ""));
+            writer.append(preferences.getInt("AutoModes", 0)+"");
+            writer.append(preferences.getString("HumanPlayer", ""));
+            writer.append(preferences.getString("DriveTrain", ""));
+            writer.append(preferences.getBoolean("HighShoot", false)+"");
+            writer.append(preferences.getBoolean("LowShoot", false)+"");
+            writer.append(preferences.getBoolean("PlaceGears", false)+"");
+            writer.append(preferences.getBoolean("Cheesecake", false)+"");
+            writer.append(preferences.getInt("YearsDriving", 0)+"");
+            writer.append(preferences.getBoolean("crossLine", false)+"");
+            writer.append(preferences.getBoolean("delayAuto", false)+"");
+            writer.append(preferences.getBoolean("placeGear", false)+"");
+            writer.append(preferences.getBoolean("shootFuel", false)+"");
+            writer.append(preferences.getBoolean("hopper", false)+"");
+            writer.append(preferences.getBoolean("pickBalls", false)+"");
+            writer.append(preferences.getBoolean("startKey", false)+"");
+            writer.append(preferences.getBoolean("startNextKey", false)+"");
+            writer.append(preferences.getBoolean("startMiddle", false)+"");
+            writer.append(preferences.getBoolean("startLoad", false)+"");
+            writer.append(preferences.getString("comments", ""));
+        }
+        catch(Exception e){
+            Toast.makeText(context, "File Writer Failed", Toast.LENGTH_SHORT).show();
+        }
+        SharedPreferences.Editor editorTwo = preferences.edit();
+        editorTwo.putInt("match end",1);
+        editorTwo.commit();
+
+        Intent intent  = new Intent(context,Questions.class);
+        startActivity(intent);
+
+        }
 }

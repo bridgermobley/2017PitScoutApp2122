@@ -107,6 +107,7 @@ public class Questions extends AppCompatActivity {
         editor.putBoolean("LowShoot", lowShoot.isChecked());
         editor.putBoolean("PlaceGears", gearPlace.isChecked());
         editor.putBoolean("Cheesecake", cheesecake.isChecked());
+        editor.putString("Team", spnTeamSpinner.getSelectedItem().toString());
         editor.commit();
     }
     private String driveTrainType(){
