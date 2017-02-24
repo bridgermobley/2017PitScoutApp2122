@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import java.io.File;
@@ -20,10 +21,11 @@ public class Comments extends AppCompatActivity {
 
     CheckBox cbxCrossLine, cbxDelayAuto, cbxPlaceGear, cbxShootFuel, cbxHopper, cbxPickBalls, cbxStartKey, cbxStartNextKey, cbxStartMiddle, cbxStartLoad;
     RadioButton rad1Year, rad2Year, rad3Year, rad4Year, rad5Year;
-    EditText txtComments;
+    EditText txtComments, driverTimeThisYear;
     Button buttonNext;
     SharedPreferences preferences;
     Context context;
+    RadioGroup radioGroup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,6 +33,7 @@ public class Comments extends AppCompatActivity {
         setContentView(R.layout.activity_comments);
         context=this;
         cbxCrossLine=(CheckBox)findViewById(R.id.checkCross);
+        driverTimeThisYear =(EditText)findViewById(R.id.txtDriverThisYear);
         cbxDelayAuto=(CheckBox)findViewById(R.id.checkDelay);
         cbxPlaceGear=(CheckBox)findViewById(R.id.checkGear);
         cbxShootFuel=(CheckBox)findViewById(R.id.checkShoot);
@@ -46,6 +49,8 @@ public class Comments extends AppCompatActivity {
         rad4Year=(RadioButton)findViewById(R.id.radio4Year);
         rad5Year=(RadioButton)findViewById(R.id.radio5Year);
         txtComments=(EditText)findViewById(R.id.txtComments);
+        buttonNext=(Button)findViewById(R.id.buttonFinish);
+        radioGroup=(RadioGroup)findViewById(R.id.radGroupDriverCurrent);
         preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         buttonNext.setOnClickListener(
                 new Button.OnClickListener(){
@@ -103,6 +108,9 @@ public class Comments extends AppCompatActivity {
         try{
             FileWriter writer;
                 writer = new FileWriter(file, true);
+            writer.append("ScoutName,Team,Weight,Height,Width,Length,NumWheels,TypeWheels,BallCap,StartLoc,AutoModes,HumanPlayer," +
+                    "DriveTrain,HighShoot,LowShoot,PlaceGears,Cheesecake,YearsDriving,crossLine,delayAuto,placeGear,shootFuel,hopper," +
+                    "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,");
             writer.append(preferences.getString("ScoutName", ""));
             writer.append(preferences.getString("Team", ""));
             writer.append(preferences.getInt("Weight", 0)+"");
@@ -144,4 +152,34 @@ public class Comments extends AppCompatActivity {
         startActivity(intent);
 
         }
+    public void finishButton(){
+        if (CheckEverything()){
+            return;
+        }
+        saveData();
+        startActivity (new Intent(Comments.this, Questions.class));
+
+    }
+    private boolean CheckEverything() {
+        if (driverTimeThisYear.getText().toString().equals("")) {
+            Toast.makeText(context, "Please tell us how much time the driver has spent practicing", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+        switch (radioGroup.getCheckedRadioButtonId()){
+            case R.id.radio1Year:
+                break;
+            case R.id.radio2Year:
+                break;
+            case R.id.radio3Year:
+                break;
+            case R.id.radio4Year:
+                break;
+            case R.id.radio5Year:
+                break;
+            default:
+                return false;
+        }
+        return true;
+    }
+
 }

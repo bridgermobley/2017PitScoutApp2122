@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -27,18 +28,19 @@ import java.util.Scanner;
 public class Questions extends AppCompatActivity {
 
     EditText scoutName, robotWeight, robotHeight, robotWidth, robotLength, numWheels, typeWheels, ballCap, startLoc, autoModes, humanPlayer;
-    RadioButton dtTank, dtSwerve, dtMecanum, dtOmni, dtOther;
+    RadioButton dtTank, dtSwerve, dtMecanum, dtOmni, dtOther, dtJump;
     CheckBox highShoot, lowShoot, gearPlace, hasAuto, cheesecake;
     String[] spinnerAry;
     Context context;
     Spinner spnTeamSpinner;
+    RadioGroup radioGroup;
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_questions);
         verifyStoragePermissions(this);
         context = this;
-        Button buttonNext = (Button) findViewById(R.id.buttonNext);
+        Button buttonNext = (Button) findViewById(R.id.buttonFinish);
         scoutName = (EditText)findViewById(R.id.txtScoutName);
         robotWeight = (EditText)findViewById(R.id.txtWeight);
         robotHeight = (EditText)findViewById(R.id.txtHeight);
@@ -59,6 +61,7 @@ public class Questions extends AppCompatActivity {
         lowShoot = (CheckBox)findViewById(R.id.checkLow);
         gearPlace = (CheckBox)findViewById(R.id.checkGear);
         hasAuto = (CheckBox)findViewById(R.id.checkAuto);
+        dtJump= (RadioButton)findViewById(R.id.radioJump);
         cheesecake = (CheckBox)findViewById(R.id.checkCheesecake);
         spnTeamSpinner = (Spinner)findViewById(R.id.spinnerChoseTeam);
 
@@ -78,15 +81,6 @@ public class Questions extends AppCompatActivity {
         ArrayAdapter<String> teamSpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerAry);
         teamSpnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spnTeamSpinner.setAdapter(teamSpnAdapter);
-
-        buttonNext.setOnClickListener(
-                new Button.OnClickListener(){
-                    public void onClick(View v)  {
-                        saveData();
-                        startActivity (new Intent(Questions.this, Comments.class));
-                    }
-                }
-        );
     }
     private void saveData(){
         SharedPreferences preferences = getSharedPreferences("preferences", MODE_PRIVATE);
@@ -97,7 +91,7 @@ public class Questions extends AppCompatActivity {
         editor.putInt("Width", Integer.parseInt(robotWidth.getText().toString()));
         editor.putInt("Length", Integer.parseInt(robotLength.getText().toString()));
         editor.putInt("NumWheels", Integer.parseInt(numWheels.getText().toString()));
-        editor.putString("TypeWheels", numWheels.getText().toString());
+        editor.putString("TypeWheels", getWheels());
         editor.putInt("BallCap", Integer.parseInt(ballCap.getText().toString()));
         editor.putString("StartLoc", startLoc.getText().toString());
         editor.putInt("AutoModes", Integer.parseInt(autoModes.getText().toString()));
@@ -166,6 +160,73 @@ public class Questions extends AppCompatActivity {
             Toast t = Toast.makeText(context,
                     "File not found!", Toast.LENGTH_LONG);
             t.show();
+        }
+    }
+    private boolean checkEverything(){
+        if(scoutName.getText().toString().equals("")){
+            return false;
+        }
+        if(robotWeight.getText().toString().equals("")){
+            return false;
+        }
+        if(robotHeight.getText().toString().equals("")){
+            return false;
+        }
+        if(robotWidth.getText().toString().equals("")){
+            return false;
+        }
+        if(robotLength.getText().toString().equals("")){
+            return false;
+        }
+        if(numWheels.getText().toString().equals("")){
+            return false;
+        }
+        if(typeWheels.getText().toString().equals("")){
+            return false;
+        }
+        if(ballCap.getText().toString().equals("")){
+            return false;
+        }
+        if(startLoc.getText().toString().equals("")){
+            return false;
+        }
+        if(autoModes.getText().toString().equals("")){
+            return false;
+        }
+        if(humanPlayer.getText().toString().equals("")){
+            return false;
+        }
+        if (!dtTank.isChecked() && !dtSwerve.isChecked() && !dtOmni.isChecked() && !dtMecanum.isChecked() && !dtOther.isChecked()){
+            return false;
+        }
+        if (spnTeamSpinner.getSelectedItem().toString().equals("Pick A Team")){
+            return false;
+        }
+        return true;
+    }
+    public void nextButton(View view){
+        if (!checkEverything()){
+            return;
+        }
+        saveData();
+        startActivity (new Intent(Questions.this, Comments.class));
+    }
+    public String getWheels(){
+        switch (radioGroup.getCheckedRadioButtonId()){
+            case R.id.radioJump:
+                return "Jump";
+            case R.id.radioMecanum:
+                return "Mecanum";
+            case R.id.radioOmni:
+                return "Omni";
+            case R.id.radioOther:
+                return "Other";
+            case R.id.radioSwerve:
+                return "Swerve";
+            case R.id.radioTank:
+                return "Tank";
+            default:
+                return "None";
         }
     }
 }
