@@ -164,42 +164,55 @@ public class Questions extends AppCompatActivity {
     }
     private boolean checkEverything(){
         if(scoutName.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter your name", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(robotWeight.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a weight", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(robotHeight.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a height", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(robotWidth.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a width", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(robotLength.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a length", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(numWheels.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter the number of wheels", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(typeWheels.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a wheel type", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(ballCap.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a ball capacity", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(startLoc.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a Starting Location", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(autoModes.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter the number of auto modes", Toast.LENGTH_SHORT).show();
             return false;
         }
         if(humanPlayer.getText().toString().equals("")){
+            Toast.makeText(context, "Please enter a human player preference", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (!dtTank.isChecked() && !dtSwerve.isChecked() && !dtOmni.isChecked() && !dtMecanum.isChecked() && !dtOther.isChecked()){
+            Toast.makeText(context, "Please enter a drive train type", Toast.LENGTH_SHORT).show();
             return false;
         }
         if (spnTeamSpinner.getSelectedItem().toString().equals("Pick A Team")){
+            Toast.makeText(context, "Please select a team", Toast.LENGTH_SHORT).show();
             return false;
         }
         return true;

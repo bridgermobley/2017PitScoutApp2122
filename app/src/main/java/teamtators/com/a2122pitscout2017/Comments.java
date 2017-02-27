@@ -31,37 +31,38 @@ public class Comments extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_comments);
-        context=this;
-        cbxCrossLine=(CheckBox)findViewById(R.id.checkCross);
-        driverTimeThisYear =(EditText)findViewById(R.id.txtDriverThisYear);
-        cbxDelayAuto=(CheckBox)findViewById(R.id.checkDelay);
-        cbxPlaceGear=(CheckBox)findViewById(R.id.checkGear);
-        cbxShootFuel=(CheckBox)findViewById(R.id.checkShoot);
-        cbxHopper=(CheckBox)findViewById(R.id.checkHopper);
-        cbxPickBalls=(CheckBox)findViewById(R.id.checkPick);
-        cbxStartKey=(CheckBox)findViewById(R.id.radioStartInKey);
-        cbxStartNextKey=(CheckBox)findViewById(R.id.radioStartNextKey);
-        cbxStartMiddle=(CheckBox)findViewById(R.id.radioStartMiddle);
-        cbxStartLoad=(CheckBox)findViewById(R.id.radioStartLoadingStation);
-        rad1Year=(RadioButton)findViewById(R.id.radio1Year);
-        rad2Year=(RadioButton)findViewById(R.id.radio2Year);
-        rad3Year=(RadioButton)findViewById(R.id.radio3Year);
-        rad4Year=(RadioButton)findViewById(R.id.radio4Year);
-        rad5Year=(RadioButton)findViewById(R.id.radio5Year);
-        txtComments=(EditText)findViewById(R.id.txtComments);
-        buttonNext=(Button)findViewById(R.id.buttonFinish);
-        radioGroup=(RadioGroup)findViewById(R.id.radGroupDriverCurrent);
+        context = this;
+        cbxCrossLine = (CheckBox) findViewById(R.id.checkCross);
+        driverTimeThisYear = (EditText) findViewById(R.id.txtDriverThisYear);
+        cbxDelayAuto = (CheckBox) findViewById(R.id.checkDelay);
+        cbxPlaceGear = (CheckBox) findViewById(R.id.checkGear);
+        cbxShootFuel = (CheckBox) findViewById(R.id.checkShoot);
+        cbxHopper = (CheckBox) findViewById(R.id.checkHopper);
+        cbxPickBalls = (CheckBox) findViewById(R.id.checkPick);
+        cbxStartKey = (CheckBox) findViewById(R.id.radioStartInKey);
+        cbxStartNextKey = (CheckBox) findViewById(R.id.radioStartNextKey);
+        cbxStartMiddle = (CheckBox) findViewById(R.id.radioStartMiddle);
+        cbxStartLoad = (CheckBox) findViewById(R.id.radioStartLoadingStation);
+        rad1Year = (RadioButton) findViewById(R.id.radio1Year);
+        rad2Year = (RadioButton) findViewById(R.id.radio2Year);
+        rad3Year = (RadioButton) findViewById(R.id.radio3Year);
+        rad4Year = (RadioButton) findViewById(R.id.radio4Year);
+        rad5Year = (RadioButton) findViewById(R.id.radio5Year);
+        txtComments = (EditText) findViewById(R.id.txtComments);
+        buttonNext = (Button) findViewById(R.id.buttonFinish);
+        radioGroup = (RadioGroup) findViewById(R.id.radGroupDriverCurrent);
         preferences = getSharedPreferences("preferences", MODE_PRIVATE);
         buttonNext.setOnClickListener(
-                new Button.OnClickListener(){
-                    public void onClick(View v)  {
+                new Button.OnClickListener() {
+                    public void onClick(View v) {
                         saveData();
-                        startActivity (new Intent(Comments.this, Questions.class));
+                        startActivity(new Intent(Comments.this, Questions.class));
                     }
                 }
         );
     }
-    private void saveData(){
+
+    private void saveData() {
 
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("comments", txtComments.getText().toString());
@@ -78,94 +79,125 @@ public class Comments extends AppCompatActivity {
         editor.putInt("YearsDriving", DriverExperience());
         editor.commit();
     }
-    private int DriverExperience(){
-        if (rad1Year.isChecked()){
+
+    private int DriverExperience() {
+        if (rad1Year.isChecked()) {
             return 1;
         }
-        if (rad2Year.isChecked()){
+        if (rad2Year.isChecked()) {
             return 2;
         }
-        if (rad3Year.isChecked()){
+        if (rad3Year.isChecked()) {
             return 3;
         }
-        if (rad4Year.isChecked()){
+        if (rad4Year.isChecked()) {
             return 4;
         }
-        if (rad5Year.isChecked()){
+        if (rad5Year.isChecked()) {
             return 5;
-        }
-        else{
+        } else {
             return 0;
         }
     }
-    private void writeFile(){
+
+    private void writeFile() {
         SharedPreferences.Editor editor = preferences.edit();
         editor.putString("filename", "StandScout_Team_" + preferences.getString("Team", "TEAM#"));
         editor.commit();
 
 
         File file = new File(Environment.getExternalStorageDirectory() + "/" + preferences.getString("filename", "BROKEN"));
-        try{
+        try {
             FileWriter writer;
-                writer = new FileWriter(file, true);
+            writer = new FileWriter(file, true);
             writer.append("ScoutName,Team,Weight,Height,Width,Length,NumWheels,TypeWheels,BallCap,StartLoc,AutoModes,HumanPlayer," +
                     "DriveTrain,HighShoot,LowShoot,PlaceGears,Cheesecake,YearsDriving,crossLine,delayAuto,placeGear,shootFuel,hopper," +
                     "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,");
             writer.append(preferences.getString("ScoutName", ""));
-            writer.append(preferences.getString("Team", ""));
-            writer.append(preferences.getInt("Weight", 0)+"");
-            writer.append(preferences.getInt("Height", 0)+"");
-            writer.append(preferences.getInt("Width", 0)+"");
-            writer.append(preferences.getInt("Length", 0)+"");
-            writer.append(preferences.getInt("NumWheels", 0)+"");
-            writer.append(preferences.getString("TypeWheels", ""));
-            writer.append(preferences.getInt("BallCap", 1)+"");
-            writer.append(preferences.getString("StartLoc", ""));
-            writer.append(preferences.getInt("AutoModes", 0)+"");
-            writer.append(preferences.getString("HumanPlayer", ""));
-            writer.append(preferences.getString("DriveTrain", ""));
-            writer.append(preferences.getBoolean("HighShoot", false)+"");
-            writer.append(preferences.getBoolean("LowShoot", false)+"");
-            writer.append(preferences.getBoolean("PlaceGears", false)+"");
-            writer.append(preferences.getBoolean("Cheesecake", false)+"");
-            writer.append(preferences.getInt("YearsDriving", 0)+"");
-            writer.append(preferences.getBoolean("crossLine", false)+"");
-            writer.append(preferences.getBoolean("delayAuto", false)+"");
-            writer.append(preferences.getBoolean("placeGear", false)+"");
-            writer.append(preferences.getBoolean("shootFuel", false)+"");
-            writer.append(preferences.getBoolean("hopper", false)+"");
-            writer.append(preferences.getBoolean("pickBalls", false)+"");
-            writer.append(preferences.getBoolean("startKey", false)+"");
-            writer.append(preferences.getBoolean("startNextKey", false)+"");
-            writer.append(preferences.getBoolean("startMiddle", false)+"");
-            writer.append(preferences.getBoolean("startLoad", false)+"");
-            writer.append(preferences.getString("comments", ""));
-        }
-        catch(Exception e){
+            writer.append(",");
+            writer.append(preferences.getString("Team", "").replaceAll(",*", ""));
+            writer.append(",");
+            writer.append(preferences.getInt("Weight", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getInt("Height", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getInt("Width", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getInt("Length", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getInt("NumWheels", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getString("TypeWheels", "").replaceAll(",", ""));
+            writer.append(",");
+            writer.append(preferences.getInt("BallCap", 1) + "");
+            writer.append(",");
+            writer.append(preferences.getString("StartLoc", "").replaceAll(",", ""));
+            writer.append(",");
+            writer.append(preferences.getInt("AutoModes", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getString("HumanPlayer", "").replaceAll(",", ""));
+            writer.append(",");
+            writer.append(preferences.getString("DriveTrain", "").replaceAll(",", ""));
+            writer.append(",");
+            writer.append(preferences.getBoolean("HighShoot", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("LowShoot", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("PlaceGears", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("Cheesecake", false) + "");
+            writer.append(",");
+            writer.append(preferences.getInt("YearsDriving", 0) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("crossLine", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("delayAuto", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("placeGear", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("shootFuel", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("hopper", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("pickBalls", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("startKey", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("startNextKey", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("startMiddle", false) + "");
+            writer.append(",");
+            writer.append(preferences.getBoolean("startLoad", false) + "");
+            writer.append(",");
+            writer.append(preferences.getString("comments", "").replaceAll(",", ""));
+            writer.append("\n");
+        } catch (Exception e) {
             Toast.makeText(context, "File Writer Failed", Toast.LENGTH_SHORT).show();
         }
         SharedPreferences.Editor editorTwo = preferences.edit();
-        editorTwo.putInt("match end",1);
+        editorTwo.putInt("match end", 1);
         editorTwo.commit();
 
-        Intent intent  = new Intent(context,Questions.class);
+        Intent intent = new Intent(context, Questions.class);
         startActivity(intent);
 
-        }
-    public void finishButton(){
-        if (CheckEverything()){
+    }
+
+    public void finishButton() {
+        if (CheckEverything()) {
             return;
         }
         saveData();
-        startActivity (new Intent(Comments.this, Questions.class));
+        startActivity(new Intent(Comments.this, Questions.class));
 
     }
+
     private boolean CheckEverything() {
         if (driverTimeThisYear.getText().toString().equals("")) {
             Toast.makeText(context, "Please tell us how much time the driver has spent practicing", Toast.LENGTH_SHORT).show();
             return false;
         }
-        switch (radioGroup.getCheckedRadioButtonId()){
+        switch (radioGroup.getCheckedRadioButtonId()) {
             case R.id.radio1Year:
                 break;
             case R.id.radio2Year:
@@ -177,6 +209,7 @@ public class Comments extends AppCompatActivity {
             case R.id.radio5Year:
                 break;
             default:
+                Toast.makeText(context, "Please enter the number of years the driver has been driving", Toast.LENGTH_SHORT).show();
                 return false;
         }
         return true;
