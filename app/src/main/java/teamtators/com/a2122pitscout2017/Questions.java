@@ -68,15 +68,17 @@ public class Questions extends AppCompatActivity {
         spinnerAry = new String[7];
         //DummyData
         spinnerAry[0] = "Pick A Team";
-        spinnerAry[1] = "254";
-        spinnerAry[2] = "976";
-        spinnerAry[3] = "987";
-        spinnerAry[4] = "1114";
-        spinnerAry[5] = "2056";
-        spinnerAry[6] = "2122";
+        spinnerAry[1] = "254,CHEZYPOFS";
+        spinnerAry[2] = "976,URMOM.com";
+        spinnerAry[3] = "987,DONTKNOWTHISTEANM";
+        spinnerAry[4] = "1114,NINTENDOSWITCHSUCKS";
+        spinnerAry[5] = "2056,KINDAGOOD";
+        spinnerAry[6] = "2122,BESTTEAMINTHEWOROLD";
         //ActualData
         System.out.println("Hello FakeData");
         readFile();
+        SharedPreferences preferences = this.getSharedPreferences("preferences", MODE_PRIVATE);
+        scoutName.setText(preferences.getString("ScoutName", ""));
 
         ArrayAdapter<String> teamSpnAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, spinnerAry);
         teamSpnAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -218,31 +220,30 @@ public class Questions extends AppCompatActivity {
         return true;
     }
     public void nextButton(View view){
-        if (!checkEverything()){
-            return;
-        }
+        //if (!checkEverything()){
+        //    return;
+        //}
         saveData();
+
         startActivity (new Intent(Questions.this, Comments.class));
     }
     public String getWheels(){
-        switch (radioGroup.getCheckedRadioButtonId()){
-            case R.id.radioJump:
+            if(dtJump.isChecked()){
                 return "Jump";
-            case R.id.radioMecanum:
+            }else if (dtMecanum.isChecked()) {
                 return "Mecanum";
-            case R.id.radioOmni:
+            }else if (dtOmni.isChecked()) {
                 return "Omni";
-            case R.id.radioOther:
+            }else if (dtOther.isChecked()) {
                 return "Other";
-            case R.id.radioSwerve:
+            }else if (dtSwerve.isChecked()) {
                 return "Swerve";
-            case R.id.radioTank:
-                return "Tank";
-            default:
-                return "None";
+            }else if (dtTank.isChecked()) {
+                return "Swerve";
+            }else
+                return"none";
         }
     }
-}
 
 
 

@@ -55,6 +55,7 @@ public class Comments extends AppCompatActivity {
         buttonNext.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
+                        writeFile();
                         saveData();
                         startActivity(new Intent(Comments.this, Questions.class));
                     }
@@ -102,7 +103,7 @@ public class Comments extends AppCompatActivity {
 
     private void writeFile() {
         SharedPreferences.Editor editor = preferences.edit();
-        editor.putString("filename", "StandScout_Team_" + preferences.getString("Team", "TEAM#"));
+        editor.putString("filename", "PitScout_" + preferences.getString("ScoutName", "NAME")+".csv");
         editor.commit();
 
 
@@ -110,12 +111,12 @@ public class Comments extends AppCompatActivity {
         try {
             FileWriter writer;
             writer = new FileWriter(file, true);
-            writer.append("ScoutName,Team,Weight,Height,Width,Length,NumWheels,TypeWheels,BallCap,StartLoc,AutoModes,HumanPlayer," +
-                    "DriveTrain,HighShoot,LowShoot,PlaceGears,Cheesecake,YearsDriving,crossLine,delayAuto,placeGear,shootFuel,hopper," +
-                    "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,");
+            //writer.append("ScoutName,Team,Weight,Height,Width,Length,NumWheels,TypeWheels,BallCap,StartLoc,AutoModes,HumanPlayer," +
+            //        "DriveTrain,HighShoot,LowShoot,PlaceGears,Cheesecake,YearsDriving,crossLine,delayAuto,placeGear,shootFuel,hopper," +
+            //        "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,");
             writer.append(preferences.getString("ScoutName", ""));
             writer.append(",");
-            writer.append(preferences.getString("Team", "").replaceAll(",*", ""));
+            writer.append(preferences.getString("Team", "").replaceAll(",.*", "").replaceAll("\n", ""));
             writer.append(",");
             writer.append(preferences.getInt("Weight", 0) + "");
             writer.append(",");
@@ -127,17 +128,17 @@ public class Comments extends AppCompatActivity {
             writer.append(",");
             writer.append(preferences.getInt("NumWheels", 0) + "");
             writer.append(",");
-            writer.append(preferences.getString("TypeWheels", "").replaceAll(",", ""));
+            writer.append(preferences.getString("TypeWheels", "").replaceAll(",", "").replaceAll("\n", ""));
             writer.append(",");
             writer.append(preferences.getInt("BallCap", 1) + "");
             writer.append(",");
-            writer.append(preferences.getString("StartLoc", "").replaceAll(",", ""));
+            writer.append(preferences.getString("StartLoc", "").replaceAll(",", "").replaceAll("\n", ""));
             writer.append(",");
             writer.append(preferences.getInt("AutoModes", 0) + "");
             writer.append(",");
-            writer.append(preferences.getString("HumanPlayer", "").replaceAll(",", ""));
+            writer.append(preferences.getString("HumanPlayer", "").replaceAll(",", "").replaceAll("\n", ""));
             writer.append(",");
-            writer.append(preferences.getString("DriveTrain", "").replaceAll(",", ""));
+            writer.append(preferences.getString("DriveTrain", "").replaceAll(",", "").replaceAll("\n", ""));
             writer.append(",");
             writer.append(preferences.getBoolean("HighShoot", false) + "");
             writer.append(",");
@@ -169,8 +170,9 @@ public class Comments extends AppCompatActivity {
             writer.append(",");
             writer.append(preferences.getBoolean("startLoad", false) + "");
             writer.append(",");
-            writer.append(preferences.getString("comments", "").replaceAll(",", ""));
+            writer.append(preferences.getString("comments", "").replaceAll(",", "").replaceAll("\n", ""));
             writer.append("\n");
+            writer.close();
         } catch (Exception e) {
             Toast.makeText(context, "File Writer Failed", Toast.LENGTH_SHORT).show();
         }
@@ -188,6 +190,7 @@ public class Comments extends AppCompatActivity {
             return;
         }
         saveData();
+        writeFile();
         startActivity(new Intent(Comments.this, Questions.class));
 
     }
@@ -197,21 +200,9 @@ public class Comments extends AppCompatActivity {
             Toast.makeText(context, "Please tell us how much time the driver has spent practicing", Toast.LENGTH_SHORT).show();
             return false;
         }
-        switch (radioGroup.getCheckedRadioButtonId()) {
-            case R.id.radio1Year:
-                break;
-            case R.id.radio2Year:
-                break;
-            case R.id.radio3Year:
-                break;
-            case R.id.radio4Year:
-                break;
-            case R.id.radio5Year:
-                break;
-            default:
-                Toast.makeText(context, "Please enter the number of years the driver has been driving", Toast.LENGTH_SHORT).show();
-                return false;
-        }
+       if (!rad1Year.isChecked()||!rad2Year.isChecked()||!rad3Year.isChecked()||!rad4Year.isChecked()||!rad5Year.isChecked()){
+           return false;
+       }
         return true;
     }
 
