@@ -29,45 +29,50 @@
         android:layout_alignParentLeft="true"/>
 
     <Spinner
-        android:layout_width="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_width="200dp"
         android:layout_height="wrap_content"
         android:id="@+id/spinnerChoseTeam"
         android:layout_alignParentTop="true"
-        android:layout_marginLeft="200dp"
+        android:layout_toLeftOf="@+id/txtScoutName"
         />
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtWeight"
         android:hint="Robot Weight"
+        android:inputType="number"
         android:layout_alignTop="@+id/txtScoutName"
         android:layout_marginTop="50dp"
         android:layout_alignParentLeft="true"/>
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtLength"
         android:hint="Robot Length"
+        android:inputType="number"
         android:layout_alignTop="@+id/txtWeight"
         android:layout_marginTop="50dp"
         android:layout_alignParentLeft="true"/>
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtWidth"
         android:hint="Robot Width"
+        android:inputType="number"
         android:layout_alignTop="@+id/txtLength"
         android:layout_marginTop="50dp"
         android:layout_alignParentLeft="true"/>
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtHeight"
         android:hint="Robot Height"
+        android:inputType="number"
         android:layout_alignTop="@+id/txtWidth"
         android:layout_marginTop="50dp"
         android:layout_alignParentLeft="true"/>
@@ -84,12 +89,13 @@
 
     <RadioGroup
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:id="@+id/radGroupDriveTrain"
+        android:layout_below="@+id/txtDriveTrain">
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="300dp"
             android:text="Tank (wheels or tread)"
             android:id="@+id/radioTank"
             />
@@ -136,7 +142,7 @@
         android:layout_height="wrap_content"
         android:text="High Shooter"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="520dp"
+        android:layout_below="@+id/radGroupDriveTrain"
         android:id="@+id/checkHigh"
         />
 
@@ -145,7 +151,7 @@
         android:layout_height="wrap_content"
         android:text="Low Shooter"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="540dp"
+        android:layout_below="@+id/checkHigh"
         android:id="@+id/checkLow"
         />
 
@@ -154,7 +160,7 @@
         android:layout_height="wrap_content"
         android:text="Place Gears"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="560dp"
+        android:layout_below="@+id/checkLow"
         android:id="@+id/checkGear"
         />
 
@@ -163,17 +169,19 @@
         android:layout_height="wrap_content"
         android:text="Auto?"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="580dp"
         android:id="@+id/checkAuto"
+        android:layout_below="@+id/checkGear"
         />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editCapacity"
+        android:inputType="number"
         android:layout_alignParentLeft="true"
-        android:text="Ball Capacity"
-        android:layout_marginTop="600dp"
+        android:hint="Ball Capacity"
+        android:layout_below="@+id/checkAuto"
+
         />
 
     <EditText
@@ -181,8 +189,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/editStartingLocation"
         android:layout_alignParentLeft="true"
-        android:text="Starting Location"
-        android:layout_marginTop="620dp"
+        android:hint="Starting Location"
+        android:layout_below="@+id/editCapacity"
         />
 
     <EditText
@@ -190,34 +198,35 @@
         android:layout_height="wrap_content"
         android:id="@+id/editHumanPlayerPreference"
         android:layout_alignParentLeft="true"
-        android:text="Human Player Preference"
-        android:layout_marginTop="640dp"
-        />
+        android:hint="Human Player Preference"
+        android:layout_below="@+id/editStartingLocation"/>
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtWheels"
+        android:inputType="number"
         android:hint="Number of wheels"
         android:layout_marginTop="260dp"
         android:layout_marginLeft="260dp"
         />
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtWheelType"
         android:hint="Type of wheels"
-        android:layout_marginTop="300dp"
+        android:layout_below="@+id/txtWheels"
         android:layout_marginLeft="260dp"
         />
 
-    <AutoCompleteTextView
+    <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/txtAutoMode"
         android:hint="# of auto modes"
-        android:layout_marginTop="565dp"
+        android:inputType="number"
+        android:layout_below="@+id/txtWheelType"
         android:layout_marginLeft="260dp"
         />
 
@@ -226,7 +235,7 @@
         android:layout_height="wrap_content"
         android:text="Willing to Cheesecake"
         android:layout_alignParentLeft="true"
-        android:layout_marginTop="720dp"
+        android:layout_below="@+id/editHumanPlayerPreference"
         android:id="@+id/checkCheesecake"
         />
 
