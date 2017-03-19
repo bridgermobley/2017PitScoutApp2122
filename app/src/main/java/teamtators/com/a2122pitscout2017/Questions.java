@@ -16,7 +16,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
-import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.Toast;
 
@@ -29,11 +28,11 @@ public class Questions extends AppCompatActivity {
 
     EditText scoutName, robotWeight, robotHeight, robotWidth, robotLength, numWheels, typeWheels, ballCap, startLoc, autoModes, humanPlayer;
     RadioButton dtTank, dtSwerve, dtMecanum, dtOmni, dtOther, dtJump;
-    CheckBox highShoot, lowShoot, gearPlace, hasAuto, cheesecake;
+    CheckBox highShoot, lowShoot, gearPlace, hasAuto, cheesecake, climber, defense;
     String[] spinnerAry;
     Context context;
     Spinner spnTeamSpinner;
-    RadioGroup radioGroup;
+
     @Override
     protected void onCreate(final Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,6 +63,8 @@ public class Questions extends AppCompatActivity {
         dtJump= (RadioButton)findViewById(R.id.radioJump);
         cheesecake = (CheckBox)findViewById(R.id.checkCheesecake);
         spnTeamSpinner = (Spinner)findViewById(R.id.spinnerChoseTeam);
+        climber = (CheckBox)findViewById(R.id.checkClimber);
+        defense = (CheckBox)findViewById(R.id.Defense);
 
         spinnerAry = new String[7];
         //DummyData
@@ -104,6 +105,8 @@ public class Questions extends AppCompatActivity {
         editor.putBoolean("PlaceGears", gearPlace.isChecked());
         editor.putBoolean("Cheesecake", cheesecake.isChecked());
         editor.putString("Team", spnTeamSpinner.getSelectedItem().toString());
+        editor.putBoolean("Climber" ,climber.isChecked());
+        editor.putBoolean("Defense", defense.isChecked());
         editor.commit();
     }
     private String driveTrainType(){

@@ -114,9 +114,9 @@ public class Comments extends AppCompatActivity {
             //writer.append("ScoutName,Team,Weight,Height,Width,Length,NumWheels,TypeWheels,BallCap,StartLoc,AutoModes,HumanPlayer," +
             //        "DriveTrain,HighShoot,LowShoot,PlaceGears,Cheesecake,YearsDriving,crossLine,delayAuto,placeGear,shootFuel,hopper," +
             //        "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,");
-            writer.append(preferences.getString("ScoutName", ""));
-            writer.append(",");
             writer.append(preferences.getString("Team", "").replaceAll(",.*", "").replaceAll("\n", ""));
+            writer.append(",");
+            writer.append(preferences.getString("ScoutName", ""));
             writer.append(",");
             writer.append(preferences.getInt("Weight", 0) + "");
             writer.append(",");
@@ -170,7 +170,11 @@ public class Comments extends AppCompatActivity {
             writer.append(",");
             writer.append(preferences.getBoolean("startLoad", false) + "");
             writer.append(",");
-            writer.append(preferences.getString("comments", "").replaceAll(",", "").replaceAll("\n", ""));
+            writer.append(preferences.getString("comments", "").replaceAll(",", "").replaceAll("\n", "").replaceAll("", ""));
+            writer.append(",");
+            writer.append(preferences.getBoolean("Climber", false)+"");
+            writer.append(",");
+            writer.append(preferences.getBoolean("Defense", false)+"");
             writer.append("\n");
             writer.close();
         } catch (Exception e) {

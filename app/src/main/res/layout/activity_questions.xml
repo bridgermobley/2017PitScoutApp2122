@@ -178,9 +178,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/editCapacity"
         android:inputType="number"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@+id/txtWheelType"
         android:hint="Ball Capacity"
-        android:layout_below="@+id/checkAuto"
+        android:layout_below="@+id/txtAutoMode"
 
         />
 
@@ -188,7 +188,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editStartingLocation"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@id/txtAutoMode"
         android:hint="Starting Location"
         android:layout_below="@+id/editCapacity"
         />
@@ -197,7 +197,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/editHumanPlayerPreference"
-        android:layout_alignParentLeft="true"
+        android:layout_alignLeft="@id/txtAutoMode"
         android:hint="Human Player Preference"
         android:layout_below="@+id/editStartingLocation"/>
 
@@ -207,7 +207,7 @@
         android:id="@+id/txtWheels"
         android:inputType="number"
         android:hint="Number of wheels"
-        android:layout_marginTop="260dp"
+        android:layout_alignTop="@+id/txtDriveTrain"
         android:layout_marginLeft="260dp"
         />
 
@@ -217,8 +217,8 @@
         android:id="@+id/txtWheelType"
         android:hint="Type of wheels"
         android:layout_below="@+id/txtWheels"
-        android:layout_marginLeft="260dp"
-        />
+        android:layout_alignLeft="@+id/txtWheels"/>
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -227,17 +227,34 @@
         android:hint="# of auto modes"
         android:inputType="number"
         android:layout_below="@+id/txtWheelType"
-        android:layout_marginLeft="260dp"
-        />
+        android:layout_alignLeft="@+id/txtWheelType"/>
 
     <CheckBox
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Willing to Cheesecake"
         android:layout_alignParentLeft="true"
-        android:layout_below="@+id/editHumanPlayerPreference"
+        android:layout_below="@+id/checkAuto"
         android:id="@+id/checkCheesecake"
         />
+
+    <CheckBox
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Has Climber"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/checkCheesecake"
+        android:id="@+id/checkClimber"
+        />
+
+    <CheckBox
+        android:text="Can Play Defense"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/checkClimber"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:id="@+id/Defense" />
 
 </RelativeLayout>
 
