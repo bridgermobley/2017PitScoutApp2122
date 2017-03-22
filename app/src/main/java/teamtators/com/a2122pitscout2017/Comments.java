@@ -55,8 +55,8 @@ public class Comments extends AppCompatActivity {
         buttonNext.setOnClickListener(
                 new Button.OnClickListener() {
                     public void onClick(View v) {
-                        writeFile();
                         saveData();
+                        writeFile();
                         startActivity(new Intent(Comments.this, Questions.class));
                     }
                 }
@@ -78,6 +78,7 @@ public class Comments extends AppCompatActivity {
         editor.putBoolean("startMiddle", cbxStartMiddle.isChecked());
         editor.putBoolean("startLoad", cbxStartLoad.isChecked());
         editor.putInt("YearsDriving", DriverExperience());
+        editor.putString("DriverExperience", driverTimeThisYear.getText().toString());
         editor.commit();
     }
 
@@ -113,7 +114,7 @@ public class Comments extends AppCompatActivity {
             writer = new FileWriter(file, true);
             //writer.append("ScoutName,Team,Weight,Height,Width,Length,NumWheels,TypeWheels,BallCap,StartLoc,AutoModes,HumanPlayer," +
             //        "DriveTrain,HighShoot,LowShoot,PlaceGears,Cheesecake,YearsDriving,crossLine,delayAuto,placeGear,shootFuel,hopper," +
-            //        "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,climber,defense\n");
+            //        "pickBalls,startKey,startNextKey,startMiddle,startLoad,comments,climber,defense,DriverExperience\n");
             writer.append(preferences.getString("Team", "").replaceAll(",.*", "").replaceAll("\n", " ").replaceAll("\\.", " "));
             writer.append(",");
             writer.append(preferences.getString("ScoutName", ""));
@@ -175,6 +176,8 @@ public class Comments extends AppCompatActivity {
             writer.append(preferences.getBoolean("Climber", false)+"");
             writer.append(",");
             writer.append(preferences.getBoolean("Defense", false)+"");
+            writer.append(",");
+            writer.append(preferences.getString("DriverExperience", ""));
             writer.append("\n");
             writer.close();
         } catch (Exception e) {
@@ -204,7 +207,7 @@ public class Comments extends AppCompatActivity {
             Toast.makeText(context, "Please tell us how much time the driver has spent practicing", Toast.LENGTH_SHORT).show();
             return false;
         }
-       if (!rad1Year.isChecked()||!rad2Year.isChecked()||!rad3Year.isChecked()||!rad4Year.isChecked()||!rad5Year.isChecked()){
+        if (!rad1Year.isChecked()||!rad2Year.isChecked()||!rad3Year.isChecked()||!rad4Year.isChecked()||!rad5Year.isChecked()){
            return false;
        }
         return true;

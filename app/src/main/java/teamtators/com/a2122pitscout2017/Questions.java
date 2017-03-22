@@ -94,7 +94,7 @@ public class Questions extends AppCompatActivity {
         editor.putInt("Width", Integer.parseInt(robotWidth.getText().toString()));
         editor.putInt("Length", Integer.parseInt(robotLength.getText().toString()));
         editor.putInt("NumWheels", Integer.parseInt(numWheels.getText().toString()));
-        editor.putString("TypeWheels", getWheels());
+        editor.putString("TypeWheels", typeWheels.getText().toString());
         editor.putInt("BallCap", Integer.parseInt(ballCap.getText().toString()));
         editor.putString("StartLoc", startLoc.getText().toString());
         editor.putInt("AutoModes", Integer.parseInt(autoModes.getText().toString()));
@@ -223,9 +223,9 @@ public class Questions extends AppCompatActivity {
         return true;
     }
     public void nextButton(View view){
-        //if (!checkEverything()){
-        //    return;
-        //}
+        if (!checkEverything()){
+            return;
+        }
         saveData();
 
         startActivity (new Intent(Questions.this, Comments.class));
