@@ -177,7 +177,7 @@ public class Comments extends AppCompatActivity {
             writer.append(",");
             writer.append(preferences.getBoolean("Defense", false)+"");
             writer.append(",");
-            writer.append(preferences.getString("DriverExperience", ""));
+            writer.append(preferences.getString("DriverExperience", "").replaceAll(",", " ").replaceAll("\n", " ").replaceAll("\\.", " "));
             writer.append("\n");
             writer.close();
         } catch (Exception e) {
